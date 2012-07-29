@@ -16,6 +16,10 @@ public class Main {
 		jeu.player[0].rotation(270);
 		jeu.deplacementPlayer(1, 3);
 		jeu.afficherPlateau();
+		jeu.player[0].rotation(90);
+		jeu.deplacementPlayer(1, 2);
+		jeu.afficherPlateau();
+		
 
 	}
 
