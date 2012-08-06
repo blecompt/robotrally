@@ -14,8 +14,8 @@ public class Robot {
 	 * 
 	 */
 	
-	public int nbrVie = 3;
-	public int ptsVie = 9;
+	public static int nbrVie = 3;
+	public static int ptsVie = 9;
 	public int x = 0;
 	public int y = 0;
 	public int numero = 0;
@@ -25,12 +25,38 @@ public class Robot {
 		this.numero = numero;
 		
 	}
+	
+	
+	public static void deplacementPlayer(int numPlayer, int nbrCase){
+		int coordActuelX = Plateau.player[numPlayer-1].getX();
+		int coordActuelY = Plateau.player[numPlayer-1].getY();
+		int coordFuturX = coordActuelX; 
+		int coordFuturY = coordActuelY;
+		Plateau.plateau[coordActuelX][coordActuelY].setPlayer(false);
+		int dirPlayer = Plateau.player[numPlayer-1].getDirection();
+		switch(dirPlayer){
+		case 0 : coordFuturX = coordActuelX - nbrCase;break; 
+		case 90 : coordFuturY = coordActuelY + nbrCase;break; 
+		case 180 : coordFuturX = coordActuelX + nbrCase;break; 
+		case 270 : coordFuturY = coordActuelY - nbrCase;break; 
+		}
+		Plateau.player[numPlayer-1].setX(coordFuturX);
+		Plateau.player[numPlayer-1].setY(coordFuturY);
+		System.out.println();
+		Plateau.plateau[coordFuturX][coordFuturY].setPlayer(true);
+		
+	}
+	
+	
+	
+	
+	
 	// On définit le sens de rotation, le sens des aiguilles d'une montre
 	public void rotation(int angle){
 		direction = (direction + angle)%360;
 	}
 
-	public int getNbrVie() {
+	public static int getNbrVie() {
 		return nbrVie;
 	}
 
@@ -38,7 +64,7 @@ public class Robot {
 		this.nbrVie = nbrVie;
 	}
 
-	public int getPtsVie() {
+	public static int getPtsVie() {
 		return ptsVie;
 	}
 
